@@ -4,18 +4,13 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        {/* <img src={logo} className="App-logo" alt="logo" /> */}
-    
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          weather app
-        </a>
-      </header>
+      <div className='container'>
+        <div className='search-box'>
+          <i className='fa-solid fa-location-dot'></i>
+          <input type="text" placeholder='Enter your location'></input>
+          <button className='fa-solid fa-magnifying-glass'></button>
+        </div>
+      </div>
     </div>
   );
 }
