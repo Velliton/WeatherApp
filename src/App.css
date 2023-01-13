@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 .App {
   text-align: center;
 }
@@ -10,4 +11,35 @@ body{
   background:#06283D;
 }
 
-
+.container{
+  position: relative;
+  width: 400px;
+  height: 105px;
+  background: #fff;
+  padding: 28px 32px;
+  border: 1px solid green;
+  overflow: hidden;
+  border-radius: 18px;
+  font-family: 'Roboto', sans-serif;
+}
+.search-box{
+  width: 100%;
+  height: min-content;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.search-box input{
+  color: 06283D;
+  width: 80%;
+  font-size: 24px;
+  font-weight: 500;
+  text-transform: uppercase;
+  padding-left: 32px;
+}
+.search-box input::placeholder{
+  font-size: 20px;
+  font-weight: 500;
+  color: #06283D;
+  text-transform: capitalize;
+}
