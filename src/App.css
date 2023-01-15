@@ -14,7 +14,7 @@ body{
 .container{
   position: relative;
   width: 400px;
-  height: 500px;
+  height: 605px;
   background: #fff;
   padding: 28px 32px;
   border: 1px solid green;
@@ -67,7 +67,7 @@ body{
   text-align: center;
 }
 .weather-box img{
-  width: 50%;
+  width: 45%;
   margin-top: 30px;
 }
 .weather-box .temperature{
@@ -98,7 +98,6 @@ body{
 }
 .weather-details .humidity,
 .weather-details .wind{
-  border: 1px solid grey;
   display: flex;
   align-items: center;
   width: 50%;
@@ -128,4 +127,20 @@ body{
   color: #06283Ddc;
   font-size: 14px;
   font-weight: 500;
+}
+.not-found{
+  border: 1px solid grey;
+  width: 100%;
+  text-align: center;
+  margin-top: 50px;
+}
+.not-found img{
+  width: 70%;
+  border: 1px solid grey;
+}
+.not-found p{
+  color: #06283Ddc;
+  font-size: 22px;
+  font-weight: 500;
+  margin-top: 12px;
 }
