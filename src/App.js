@@ -7,26 +7,44 @@ import React from "react";
 
 function App() {
 
-  const APIKey='7c0558b2e6442617079a4d3969b14035';
+  const [items, setItems] = React.useState({});
+  const [location,setLocation]=React.useState('');
+  
 
+  const onChangeSearchInput=(event)=>{
+    setLocation(event.target.value);
+  }
+
+  const getItems = async () => {
+    const res = await axios.get('https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=7c0558b2e6442617079a4d3969b14035');
+    const resData = res.data;
+    setItems(resData);
+  }
+  getItems();  
+
+/* 
   React.useEffect(() => {
 
-    const getItems = async () => {
-      const res = await axios.get('http://api.openweathermap.org/data/3.0/onecall/timemachine?lat=39.099724&lon=-94.578331&dt=1643803200&appid=${APIKey}');
-      const resData = res.data;
-      console.log(resData);
-    }
-    getItems();    
-  }, [])
+      
+  }, []); */
+  console.log(items);
 
+ 
+  console.log(location);
 
   return (
     <div className="App">
       <div className='container'>
         <div className='search-box'>
           <i className='fa-solid fa-location-dot'></i>
-          <input type="text" placeholder='Enter your location'></input>
-          <button className='fa-solid fa-magnifying-glass'></button>
+          <input
+            type="text" 
+            placeholder='Enter your location'
+            value={location} 
+            onChange={onChangeSearchInput} 
+            >
+          </input>
+          <button onClick={getItems} className='fa-solid fa-magnifying-glass'></button>
         </div>
 
         <div className='not-found'>
