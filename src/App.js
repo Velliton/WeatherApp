@@ -9,28 +9,17 @@ function App() {
 
   const [items, setItems] = React.useState({});
   const [location,setLocation]=React.useState('');
-  
+  const url=`https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=7c0558b2e6442617079a4d3969b14035`;
 
-  const onChangeSearchInput=(event)=>{
-    setLocation(event.target.value);
+  const searchLocation=(event)=>{
+    if (event.key==='Enter'){
+      axios.get(url).then((response)=>{
+      setItems(response.data);
+        console.log(response.data);
+      });
+      setLocation('');
+    }
   }
-
-  const getItems = async () => {
-    const res = await axios.get('https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=7c0558b2e6442617079a4d3969b14035');
-    const resData = res.data;
-    setItems(resData);
-  }
-  getItems();  
-
-/* 
-  React.useEffect(() => {
-
-      
-  }, []); */
-  console.log(items);
-
- 
-  console.log(location);
 
   return (
     <div className="App">
@@ -41,10 +30,11 @@ function App() {
             type="text" 
             placeholder='Enter your location'
             value={location} 
-            onChange={onChangeSearchInput} 
+            onChange={event=>setLocation(event.target.value)} 
+            onKeyPress={searchLocation}
             >
           </input>
-          <button onClick={getItems} className='fa-solid fa-magnifying-glass'></button>
+          <button className='fa-solid fa-magnifying-glass'></button>
         </div>
 
         <div className='not-found'>
@@ -54,24 +44,26 @@ function App() {
 
         <div className='weather-box'>
           <img src={sun}></img>
-          <p className='temperature'>22 
-            <span>°C</span>
-          </p>
-          <p className='description'>Clear sky</p>
+          {items.main?<p className='temperature'>{items.main.temp}<span>°C</span>
+          </p>:null}
+          
+          
+            
+         {items.weather?<p className='description'>{items.weather[0].description}</p>:null} 
         </div>
 
         <div className='weather-details'>
           <div className='humidity'>
             <i className='fa-solid fa-water'></i>
             <div className='text'>
-              <span>50%</span>
+            {items.main?<span>{items.main.humidity}%</span>:null}
               <p>Humidity</p>
             </div>
           </div>
           <div className='wind'>
             <i className='fa-solid fa-wind'></i>
             <div className='text'>
-              <span>5km\h</span>
+            {items.wind?<span>{items.wind.speed}km\h</span>:null}
               <p>Wind Speed</p>
             </div>
           </div>
